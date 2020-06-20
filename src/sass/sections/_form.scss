@@ -1,0 +1,26 @@
+.form {
+  &__item {
+    display: block;
+    padding: 10px;
+
+  }
+
+  &__input,
+  &__textarea {
+    width: 80%;
+    height: 40px;
+    padding: 5px;
+    margin: auto;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid $color-white;
+    background: rgba(255, 255, 255, 0.2);
+    &::placeholder {
+      color: $color-white;
+    }
+  }
+
+  &__textarea {
+    min-height: 100px;
+  }
+}

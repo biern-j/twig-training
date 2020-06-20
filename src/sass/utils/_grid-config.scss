@@ -1,0 +1,30 @@
+/* bootstrap */
+$grid-columns: 12;
+$grid-gutter-width: 40px;
+
+$grid-breakpoints: (
+    xs: $xs,
+    sm: $sm,
+    md: $md,
+    lg: $lg,
+    very-lg: $very-lg,
+    xl: $xl
+);
+
+$container-max-widths: (
+    md: $md + $grid-gutter-width,
+    lg: $lg + $grid-gutter-width,
+    very-lg: $very-lg + $grid-gutter-width,
+    xl: $xl + $grid-gutter-width
+);
+
+/* include-media */
+$breakpoints: (
+    xs: $xs,
+    sm: $sm,
+    md: $md,
+    lg: $lg,
+    very-lg: $very-lg,
+    xl: $xl,
+    xxl: $xxl
+);
