@@ -3,13 +3,14 @@
 const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const config = {
     context: path.resolve(__dirname, "src"),
     entry: ["./js/main.js", "./sass/main.scss"],
     output: {
-        path: path.resolve(__dirname, "public/js/"),
-        filename: "scripts.min.js",
+        path: path.resolve(__dirname, "public/"),
+        filename: "./js/scripts.min.js",
     },
     module: {
         rules: [
@@ -54,11 +55,37 @@ const config = {
                     "sass-loader",
                 ],
             },
+            {
+                test: /\.twig$/,
+                use: [
+                    "raw-loader",
+                    {
+                        loader: "twig-html-loader",
+                        options: {
+                            data: (context) => {
+                                const data = path.join(
+                                    __dirname,
+                                    "src/templates/globals.json"
+                                );
+                                context.addDependency(data); // Force webpack to watch file
+                                return (
+                                    context.fs.readJsonSync(data, {
+                                        throws: false,
+                                    }) || {}
+                                );
+                            },
+                        },
+                    },
+                ],
+            },
         ],
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: "../css/styles.min.css",
+        }),
+        new HtmlWebpackPlugin({
+            template: "./templates/index.twig",
         }),
     ],
 };
